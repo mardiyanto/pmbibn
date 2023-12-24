@@ -174,20 +174,20 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
                         <div class="row g-3">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap">
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
                                     <label for="name">Nama Lengkap</label>
                                 </div>
                             </div>
                             <input type="hidden"  name="no_daftar" value="<?php echo"IBN/$i/$kode_jadi/$j"; ?>" placeholder="Email">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                     <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                <select class='form-control select2' style='width: 100%;' name='program' >
+                                <select class='form-control select2' style='width: 100%;' name='program' required>
                   <option value='0'>----Pilih Program Kuliah----</option>
                   <option value='normal'>Normal</option>      
             <option value='rpl'>RPL 2 TAHUN</option>
@@ -197,7 +197,7 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="subject" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" id="subject" name="password" placeholder="Password" required>
                                     <label for="subject">Password</label>
                                 </div>
                             </div>

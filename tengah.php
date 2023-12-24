@@ -68,7 +68,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  // Lakukan tindakan yang sesuai di sini
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
-                                     <select class='form-selec' name='id_jurusan'>
+                                     <select class='form-selec' name='id_jurusan' required>
                                          <option value='0'>--Pilih Jurusan--</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan ORDER BY id_jurusan DESC ");
      while ($t=mysqli_fetch_array($tebaru)){ 
@@ -81,7 +81,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  // Tindakan untuk program lain
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
-                                     <select class='form-selec' name='id_jurusan'>
+                                     <select class='form-selec' name='id_jurusan' required>
                                          <option value='0'>--Pilih Jurusan--</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan WHERE id_jurusan='1' ");
      while ($t=mysqli_fetch_array($tebaru)){ 
