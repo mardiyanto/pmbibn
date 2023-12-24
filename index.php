@@ -44,33 +44,7 @@
     </div>
     <!-- Spinner End -->
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img class="img-fluid" src="tema/img/logo-tema.png" alt="">
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.php" class="nav-item nav-link active">Beranda</a>
-                <a href="tentang.php" class="nav-item nav-link">Tentang</a>
-                <a href="jurusan.php" class="nav-item nav-link">Jurusan</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Akademik</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="https://daftar.ibnus.ac.id" target="_blank" class="dropdown-item">PMB</a>
-                        <a href="http://103.126.172.193:82/index.php/login" target="_blank" class="dropdown-item">Siakad</a>
-                        <a href="#" class="dropdown-item">Dosen Kami</a>
-                        <a href="#" class="dropdown-item">Testimonial</a>
-                    </div>
-                </div>
-                <a href="biaya.php" class="nav-item nav-link">Biaya</a>
-                <a href="hubungi.php" class="nav-item nav-link">Hubungi Kami</a>
-            </div>
-            <a href="https://daftar.ibnus.ac.id" target="_blank" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-        </div>
-    </nav>
+    <?php include "menu.php" ?>
     <!-- Navbar End -->
     <!-- Carousel Start -->
 <?php include "slide.php";?>
@@ -337,56 +311,7 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
 
 
     <!-- Testimonial Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="text-center">
-                <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
-                <h1 class="mb-5">Mahasiswa Kami</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="tema/img/ade.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Ade Irfan,S.Kom</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Kampus Ibn telah memberikan fondasi yang kuat bagi perjalanan karier saya. Pengalaman belajar yang berfokus pada praktek langsung membantu saya mengembangkan keterampilan yang diperlukan di industri saat ini. Saya sangat berterima kasih atas dukungan instruktur yang luar biasa dan fasilitas modern yang diberikan oleh Kampus Ibn.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="tema/img/idris.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">M.Idris,S.Kom</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Saya merasa sangat beruntung dapat belajar di Kampus Ibn. Lingkungan pembelajaran yang mendukung dan inklusif membuat saya merasa dihargai sebagai individu. Program-program inovatif dan kesempatan untuk terlibat dalam proyek-proyek nyata memberikan wawasan mendalam dalam studi saya.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="tema/img/novi1.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Vivi Novita Destiana, S.Kom<</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Pembelajaran di Kampus Ibn membuka mata saya terhadap dunia bisnis digital yang dinamis. Saya mendapat kesempatan untuk mengembangkan ide-ide kreatif dan melihatnya tumbuh menjadi strategi bisnis yang nyata. Ini adalah pengalaman belajar yang luar biasa dan relevan dengan zaman.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="tema/img/novi.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Novita Mulya Sari, Amd.Kom</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Kampus Ibn telah memberikan landasan kokoh bagi karier saya di dunia teknologi. Pembelajaran yang terkini dan dukungan instruktur yang berpengalaman telah membantu saya meniti jalan di industri ini. Saya merasa beruntung menjadi bagian dari komunitas alumni yang selalu mendukung satu sama lain.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="tema/img/ayu.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Ayu Sekar Sari, S.Kom</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Saya sangat terkesan dengan fokus Kampus Ibn pada integrasi teknologi informasi dan manajemen. Dengan pengalaman langsung dalam mengelola sistem informasi, saya merasa siap untuk menghadapi tantangan dalam mengelola bisnis masa depan yang berbasis teknologi.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "testi.php" ?>
     <!-- Testimonial End -->
         
 
