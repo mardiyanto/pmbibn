@@ -33,6 +33,16 @@
 
     <!-- Template Stylesheet -->
     <link href="tema/css/style.css" rel="stylesheet">
+    <style>
+        /* CSS untuk menyesuaikan ukuran modal */
+        .modal-dialog {
+            max-width: 800px; /* Lebar maksimal */
+        }
+        .modal-content {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,6 +52,33 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
+         <!-- Modal -->
+<div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form login -->
+        <form action='int.php?m=login' method='post'>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+          </div>
+       
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+   <!-- Modal EDN-->
     <!-- Spinner End -->
     <!-- Navbar Start -->
     <?php include "menu.php" ?>
@@ -98,7 +135,7 @@
 
 
     <!-- About Start -->
-    <section id="tentang">
+    <section id="daftar">
     <!-- Contact Start -->
  <div class="container-xxl py-5">
         <div class="container">
@@ -108,7 +145,81 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h5>Pertanyaan Awal Dari Keberhasilan</h5>
+                <?php  $i = date("Ymd");
+$j = gmdate('H:i:s',time()+60*60*7);   
+$sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
+ $num = mysqli_num_rows($sql);
+ if($num <> 0)
+ {
+ $data = mysql_fetch_array($sql);
+ $kode = $data['id_daftar'] + 1;
+ }else
+ {
+ $kode = 1;
+ }
+ //mulai bikin kode
+ $bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
+ $kode_jadi = "$bikin_kode"; ?>
+                    <form id="myForm"  method='post' action='int.php?m=daftar'>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
+                                    <label for="name">Nama Lengkap</label>
+                                </div>
+                            </div>
+                            <input type="hidden"  name="no_daftar" value="<?php echo"IBN/$i/$kode_jadi/$j"; ?>" placeholder="Email">
+                            <input type="hidden"  name="id_daftar" value="<?php echo"$i"; ?>" placeholder="Email">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                <select class='form-control select2' style='width: 100%;' name='program' id='program' required>
+                                    <option value='normal'>----Pilih Program Kuliah----</option>
+                                    <option value='normal'>Normal</option>
+                                    <option value='rpl'>RPL 2 TAHUN</option>
+                                </select>
+                                    <label for="subject">Prgoram Kuliah</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                <select class='form-control select2' style='width: 100%;' name='jurusan' id='jurusan' required>
+                                     <option value='1'>----Pilih Jurusan----</option>
+                                </select>
+                                    <label for="subject">Jurusan</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="subject" name="password" placeholder="Password" required>
+                                    <label for="subject">Password</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Daftar</button>
+                            </div>
+                            <div class="col-6">
+                            <a  class="btn btn-primary w-100 py-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <iframe class="position-relative rounded w-100 h-100"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13361.335047566321!2d104.96286509768683!3d-5.363665589757111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e473268e8e194c1%3A0x98daa3984209b483!2sInstitut%20Bakti%20Nusantara%20(IBN)%20Pringsewu!5e0!3m2!1sid!2sid!4v1701527867662!5m2!1sid!2sid"
+                        frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+                </div>
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <h5>Pertanyaan Awal Dari Keberhasilan</h5>
                     <p class="mb-4">Pertayaan Anda Akan Kami Jawab Seputer Pendaftaran dan Biaya Untuk Kuliah Di IBN</p>
                     <div class="d-flex align-items-center mb-3">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
@@ -147,69 +258,6 @@
                             <p class="mb-0">admin@ibnus.ac.id</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13361.335047566321!2d104.96286509768683!3d-5.363665589757111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e473268e8e194c1%3A0x98daa3984209b483!2sInstitut%20Bakti%20Nusantara%20(IBN)%20Pringsewu!5e0!3m2!1sid!2sid!4v1701527867662!5m2!1sid!2sid"
-                        frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <?php  $i = date("Ymd");
-$j = gmdate('H:i:s',time()+60*60*7);   
-$sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
- $num = mysqli_num_rows($sql);
- if($num <> 0)
- {
- $data = mysql_fetch_array($sql);
- $kode = $data['id_daftar'] + 1;
- }else
- {
- $kode = 1;
- }
- //mulai bikin kode
- $bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
- $kode_jadi = "$bikin_kode"; ?>
-                    <form method='post' action='int.php?m=daftar'>
-                        <div class="row g-3">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
-                                    <label for="name">Nama Lengkap</label>
-                                </div>
-                            </div>
-                            <input type="hidden"  name="no_daftar" value="<?php echo"IBN/$i/$kode_jadi/$j"; ?>" placeholder="Email">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                                    <label for="email">Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                <select class='form-control select2' style='width: 100%;' name='program' required>
-                  <option value='0'>----Pilih Program Kuliah----</option>
-                  <option value='normal'>Normal</option>      
-            <option value='rpl'>RPL 2 TAHUN</option>
-                </select>
-                                    <label for="subject">Prgoram Kuliah</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="subject" name="password" placeholder="Password" required>
-                                    <label for="subject">Password</label>
-                                </div>
-                            </div>
-                            
-                            <div class="col-6">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Daftar</button>
-                            </div>
-                            <div class="col-6">
-                                <a href="" class="btn btn-primary w-100 py-3" >Login</a>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -334,4 +382,26 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
 
     <!-- Template Javascript -->
     <script src="tema/js/main.js"></script>
+    <script>
+    $(document).ready(function() {
+    $('#program').change(function() {
+        var selectedProgram = $(this).val();
+
+        // Kirim permintaan AJAX ke server
+        $.ajax({
+            url: 'get_jurusan.php', // Ganti dengan nama file yang menangani permintaan
+            method: 'POST',
+            data: { program: selectedProgram },
+            success: function(response) {
+                // Isi dropdown jurusan dengan hasil dari server
+                $('#jurusan').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+    </script>
+
 </body>

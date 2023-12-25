@@ -13,7 +13,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Akademik</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="https://daftar.ibnus.ac.id" target="_blank" class="dropdown-item">PMB</a>
+                        <a href="index.php#daftar"  class="dropdown-item">PMB</a>
                         <a href="http://103.126.172.193:82/index.php/login" target="_blank" class="dropdown-item">Siakad</a>
                         <a href="#" class="dropdown-item">Dosen Kami</a>
                         <a href="#" class="dropdown-item">Testimonial</a>
@@ -22,6 +22,6 @@
                 <a href="biaya.php" class="nav-item nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'biaya.php') { echo 'active'; } ?>">Biaya</a>
                 <a href="hubungi.php" class="nav-item nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'hubungi.php') { echo 'active'; } ?>"">Hubungi Kami</a>
             </div>
-            <a href="https://daftar.ibnus.ac.id" target="_blank" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="index.php#daftar" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>

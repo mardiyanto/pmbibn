@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.500.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.694.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
@@ -44,7 +44,7 @@
                           </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.520.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.694.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.520.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.694.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.300.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.267.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.300.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.267.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">Rp.300.000 /bulan</h3>
+                            <h3 class="mb-0">Rp.267.000 /bulan</h3>
                             <div class="mb-3">
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>

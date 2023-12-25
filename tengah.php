@@ -4,12 +4,8 @@
  use PHPMailer\PHPMailer\Exception;
 
 if($_GET['aksi']=='biodata'){ 
-$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_daftar=$_GET[id] ");
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
 $t=mysqli_fetch_array($tebaru); ?>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/js/select2.min.js"></script>
-
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -37,10 +33,10 @@ $t=mysqli_fetch_array($tebaru); ?>
                 <h6 class="section-title bg-white text-center text-primary px-3">Biodata <?php echo"$t[nama]"; ?> dengan nomor daftar <?php echo"$t[no_daftar]"; ?> </h6>
                 <h1 class="mb-5">Biodata <?php echo"$t[nama]"; ?> </h1>
             </div>
-            <form method='post' action='int.php?m=inputbiodata'>
+            <form method='post' action='int.php?m=inputbiodata&id_daftar=<?php echo"$t[id_daftar]"; ?>&id=<?php echo"$t[id_sesi]"; ?>'  enctype="multipart/form-data">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-               
+                <h6 >A.Data Diri dan Pilihan Jurusan : </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -57,7 +53,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                             <div class="col-6">
                                 <label >Program Kuliah</label>
                                     <select class="form-selec" name="program">
-                                        <option value="0"><?php echo"$t[program]"; ?></option>
+                                        <option value="<?php echo"$t[program]"; ?>"><?php echo"$t[program]"; ?></option>
                                         <option value="normal">Normal</option>
                                         <option value="rpl">RPL 2 TAHUN</option>
                                     </select>
@@ -71,11 +67,19 @@ $t=mysqli_fetch_array($tebaru); ?>
                                      <select class='form-selec' name='id_jurusan' required>
                                          <option value='0'>--Pilih Jurusan--</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan ORDER BY id_jurusan DESC ");
-     while ($t=mysqli_fetch_array($tebaru)){ 
-                                        echo" <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
-     }
+                                            while ($t=mysqli_fetch_array($tebaru)){ 
+                                            echo" <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
+                                            }
                                     echo" </select>
-                             </div>";
+                                </div>";
+                                echo "<div class='col-6'>
+                                <label >Jenis Kuliah</label>
+                                    <select class='form-selec' name='jenis' required>
+                                        <option value='0'>--Pilih Jenis Kuliah--</option>
+                                        <option value='reguler'>Reguler</option>
+                                        <option value='kariawan'>Kariawan</option>
+                                    </select>
+                            </div>";
                                  // Anda dapat menambahkan logika tambahan sesuai kebutuhan
                              } else {
                                  // Tindakan untuk program lain
@@ -84,89 +88,226 @@ $t=mysqli_fetch_array($tebaru); ?>
                                      <select class='form-selec' name='id_jurusan' required>
                                          <option value='0'>--Pilih Jurusan--</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan WHERE id_jurusan='1' ");
-     while ($t=mysqli_fetch_array($tebaru)){ 
+                                       while ($t=mysqli_fetch_array($tebaru)){ 
                                         echo" <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
-                                    }
+                                       }
                                     echo" </select>
+                             </div>";
+                             echo "<div class='col-6'>
+                                 <label >Jenis Kuliah</label>
+                                     <select class='form-selec' name='jenis' required>
+                                         <option value='0'>--Pilih Jenis Kuliah--</option>
+                                         <option value='kariawan'>Kariawan</option>
+                                     </select>
                              </div>";
                              
                              }
                             ?>
                             
-                            <div class="col-12">
+                           
+                             <div class='col-6'>
+                                 <label >Jenis Kelamin</label>
+                                     <select class='form-selec' name='jenis_kelamin' required>
+                                         <option value='0'>--Pilih Jenis Kelamin--</option>
+                                         <option value='laki-laki'>Laki-Laki</option>
+                                         <option value='perempuan'>Perempuan</option>
+                                     </select>
+                             </div>
+                             <div class='col-6'>
+                                 <label >Agama</label>
+                                     <select class='form-selec' name='agama' required>
+                                         <option value='tidak beragama'>--Pilih Jenis agama--</option>
+                                         <option value='Islam'>Islam</option>
+                                         <option value='Kristen'>Kristen</option>
+                                         <option value='Protestan'>Protestan</option>
+                                         <option value='Hindu'>Hindu</option>
+                                         <option value='Budha'>Budha</option>
+                                     </select>
+                             </div>
+                             <div class='col-6'>
+                                 <label >Warga Negara</label>
+                                     <select class='form-selec' name='warga_siswa' required>
+                                         <option value='0'>--Pilih Jenis Kewarga Negaraan--</option>
+                                         <option value='WNI'>Warga Negara Indonesia</option>
+                                         <option value='WNA'>Warga Negara Asing</option>
+
+                                     </select>
+                             </div>
+                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                    <label for="message">Message</label>
+                                    <input type="number" class="form-control"  name='nik' placeholder="NIK" required>
+                                    <label for="email">NIK</label>
                                 </div>
                             </div>
-                           
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control"  name='nisn' placeholder="NISN" required>
+                                    <label for="email">NISN</label>
+                                </div>
+                            </div>  
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name='no_hp' placeholder="Nomor WA/HP" required>
+                                    <label for="name">Nomor WA/HP</label>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name='tempat_lahir' placeholder="Tempat Lahir" required>
+                                    <label for="email">Tempat Lahir</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control"  name='tgl_lahir' placeholder="Tanggal Lahir" required>
+                                    <label for="email">Tanggal Lahir</label>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='asal_sekolah' placeholder="Asal Sekolah" required>
+                                    <label for="email">Asal Sekolah</label>
+                                </div>
+                            </div>                           
                         </div>
               
                 </div>
 
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-              
+                <h6 >B.Detail alamat Pendaftar </h6>
                         <div class="row g-3">
+                            
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control"  name='desa' placeholder="Desa" required>
+                                    <label for="email">Desa</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
+                                    <input type="text" class="form-control"  name='rt' placeholder="RT" required>
+                                    <label for="email">RT</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='rw' placeholder="RW" required>
+                                    <label for="email">RW</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kecamatan' placeholder="Kecamatan" required>
+                                    <label for="email">Kecamatan</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kota' placeholder="Kabupaten/Kota" required>
+                                    <label for="email">Kabupaten/Kota</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='provinsi' placeholder="Provinsi" required>
+                                    <label for="email">Provinsi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kode_pos' placeholder="Kode Pos" required>
+                                    <label for="email">Kode Pos</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <input type="file" class="form-control" name='foto' required>
+                                    <label for="subject">Pas Foto 3x4</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                    <label for="message">Message</label>
+                                    <textarea class="form-control" placeholder="Leave a message here" name='alamat' style="height: 150px" required></textarea>
+                                    <label for="message">Alamat Lengkap</label>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
+                           
                         </div>
                    
                 </div>
 
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-             
+                <h6 >C.Detail Orang Tua Pendaftar </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control" name='nama_ayah' placeholder="Nama Ayah" required>
+                                    <label for="name">Nama Ayah</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
+                                    <input type="text" class="form-control" name='nama_ibu' placeholder="Nama Ibu" required>
+                                    <label for="email">Nama Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pendidikan_ayah" placeholder="Pendidikan Ayah" required>
+                                    <label for="subject">Pendidikan Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pendidikan_ibu" placeholder="Pendidikan Ibu" required>
+                                    <label for="subject">Pendidikan Ibu</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="Pekerjaan Ayah" required>
+                                    <label for="subject">Pekerjaan Ayah</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                    <label for="message">Message</label>
+                                    <input type="text" class="form-control" name="pekerjaan_ibu" placeholder="Pekerjaan Ibu" required>
+                                    <label for="subject">Pekerjaan Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="penghasilan_ayah" placeholder="Penghasilan Ayah" required>
+                                    <label for="subject">Penghasilan Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="penghasilan_ibu" placeholder="Penghasilan Ibu" required>
+                                    <label for="subject">Penghasilan Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="no_hp_ayah" placeholder="HP/WA Ayah" required>
+                                    <label for="subject">HP/WA Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="no_hp_ibu" placeholder="HP/WA" required>
+                                    <label for="subject">HP/WA Ibu</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="transportasi" placeholder="Tranport Tasi Ke Kampus" required>
+                                    <label for="subject">Tranport Tasi Ke Kampus</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">SIMPAN</button>
                             </div>
                         </div>
                  
@@ -177,8 +318,10 @@ $t=mysqli_fetch_array($tebaru); ?>
     </div>
     <!-- Courses End -->
 <?php } ?>
-<?php if($_GET['aksi']=='biaya'){ ?>
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+<?php if($_GET['aksi']=='suksesdaftar'){ 
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar,jurusan WHERE daftar.id_jurusan=jurusan.id_jurusan AND  daftar.id_sesi=$_GET[id] ");
+$t=mysqli_fetch_array($tebaru); ?>
+    <!-- <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
@@ -193,11 +336,14 @@ $t=mysqli_fetch_array($tebaru); ?>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 <!-- Pricing Start -->
 <div class="container-xxl py-5">
             <div class="container px-lg-5">
-
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Biodata <?php echo"$t[nama]"; ?> dengan nomor daftar <?php echo"$t[no_daftar]"; ?> </h6>
+                <h1 class="mb-5">Biodata <?php echo"$t[nama]"; ?> </h1>
+            </div>
                 <div class="row gy-5 gx-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="position-relative shadow rounded border-top border-5 border-primary">
@@ -205,33 +351,51 @@ $t=mysqli_fetch_array($tebaru); ?>
                                 <i class="fa fa-database text-white"></i>
                             </div>
                             <div class="text-center border-bottom p-4 pt-5">
-                                <h4 class="fw-bold">D3 MANAJEMEN INFORMATIKA GELAR (Amd.Kom)</h4>
-                                <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
+                                <h4 class="fw-bold">BIODATA</h4>
+                                <p class="mb-0"><?php echo"$t[nama]";?></p>
                             </div>
-                            <div class="text-center border-bottom p-4">
-                                <p class="text-primary mb-1">Kuliah /Semester sampai selesai total biaya Rp.25,250,000.00  - <strong>Diskon UP TO 57% Hanya Bayar Rp. 10.800.000</strong></p>
+                                <?php 
+                                 if ($t['program'] === 'normal') { ?>
+                                <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Terimakasih sudah Mendaftar di Kampus IBN Lampung<strong> dengan memilih jurusan <?php echo"$t[nama_jurusan]";?> Dengan Biaya Kuliah Sebesar</strong></p>
+                               <?php $total=$t['biaya_spp']/1;
+                               ?>
                                 <h1 class="mb-3">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>300.000<small
-                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Bulan</small>
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small><?php echo "" . number_format($total, 0, ',', '.'); ?><small
+                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
-                                <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 GELOMBANG 1 DAPAT DI CICIL 2X</strong></p>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.3.000.000 GELOMBANG 2 DAPAT DI CICIL 2X</strong></p>
+                                <p class="text-primary mb-1">Biaya Daftar Ulang <strong><?php echo "Rp." . number_format($t['biaya_2'], 0, ',', '.'); ?> DAPAT DI CICIL 2X</strong></p>
+                            </div>    
+                                    <?php  } else { ?>
+                                        <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Terimakasih sudah Mendaftar di Kampus IBN Lampung<strong> dengan memilih jurusan <?php echo"$t[nama_jurusan]";?> Dengan Biaya Kuliah Sebesar</strong></p>
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>3.200.000<small
+                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
+                                </h1>
+                                <p class="text-primary mb-1">Biaya SKS <strong>Rp. 4O.000/SKS </strong></p>
+                                <p class="text-primary mb-1">Biaya Daftar Ulang <strong><?php echo "Rp." . number_format($t['biaya_2'], 0, ',', '.'); ?> DAPAT DI CICIL 2X</strong></p>
                             </div>
+                                    
+                                    <?php }
+                                ?>
+                            
+                            
                             <div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL. 2 : 25 FEBUARI - 03 APRIL 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.300.000 /Bulan</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 11 APRIL - 25 MEI 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.350.000 /Bulan</p>
+                            <img src="uploads/foto/<?php echo"$t[foto]";?>" width="321"   border="1">
                             </div>
 							
 							<div class="text-center border-bottom p-4">
                                 <p class="text-primary mb-1"><strong>Biaya Kuliah Belum Termasuk: </strong></p>
                             </div>
 							<div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kunjungan Industri Rp.2.500.000 1 X</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>BIAYA WISUDA Rp.2.000.000 1 X</p>
-                  
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Kunjungan Industri 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Kuliah Kerja Nyata 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Kuliah Kerja Praktik 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Jurnal 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Skripsi/Tugas Akhir 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Yudisium 1 X</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Wisuda 1 X</p>
                             </div>
                         </div>
                     </div>
@@ -241,34 +405,28 @@ $t=mysqli_fetch_array($tebaru); ?>
                                 <i class="fa fa-share-alt text-white"></i>
                             </div>
                             <div class="text-center border-bottom p-4 pt-5">
-                                <h4 class="fw-bold">S1 SISTEM INFORMASI GELAR(S.Kom)</h4>
-                                <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
-                            </div>
-                            <div class="text-center border-bottom p-4">
-                                <p class="text-primary mb-1">Kuliah /Semester sampai selesai total biaya Rp.39,750,000.00  - <strong>Diskon UP TO 40% Hanya Bayar Rp. 10.800.000</strong></p>
-                                <h1 class="mb-3">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>500.000<small
-                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Bulan</small>
-                                </h1>
-                                <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 GELOMBANG 1 DAPAT DI CICIL 2X</strong></p>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.3.000.000 GELOMBANG 2 DAPAT DI CICIL 2X</strong></p>
+                                <h4 class="fw-bold">DETAIL DATA :</h4>
+                                <p class="mb-0"><?php echo"$t[nama]";?></p>
                             </div>
                             <div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL. 2 : 25 FEBUARI - 03 APRIL 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.500.000 /Bulan</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 11 APRIL - 25 MEI 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.600.000 /Bulan</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Nama Lengkap : <?php echo"$t[nama]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>NIK : <?php echo"$t[nik]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>NISN : <?php echo"$t[nisn]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>WA/HP : <?php echo"$t[no_hp]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Nomor : <?php echo"$t[no_daftar]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Jurusan : <?php echo"$t[nama_jurusan]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Program : <?php echo"$t[program]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Jenis : <?php echo"$t[jenis]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>User Login : <?php echo"$t[email]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Password : <?php echo"$t[show_pass]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Tempat Lahir : <?php echo"$t[tempat_lahir]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Tanggal Lahir : <?php echo"$t[tgl_lahir]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Jenis Kelamin : <?php echo"$t[jenis_kelamin]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Agama : <?php echo"$t[agama]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Warganegara : <?php echo"$t[warga_siswa]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Asal Sekolah : <?php echo"$t[asal_sekolah]";?></p>
                             </div>
-							
-							<div class="text-center border-bottom p-4">
-                                <p class="text-primary mb-1"><strong>Biaya Kuliah Belum Termasuk: </strong></p>
-                            </div>
-							<div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kunjungan Industri Rp.2.500.000 1 X</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>BIAYA WISUDA Rp.2.000.000 1 X</p>
-                  
-                            </div>
+				
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
@@ -277,33 +435,26 @@ $t=mysqli_fetch_array($tebaru); ?>
                                 <i class="fa fa-cog text-white"></i>
                             </div>
                             <div class="text-center border-bottom p-4 pt-5">
-                                <h4 class="fw-bold">S1 BISNIS DIGITAL & S1 MANAJEMEN </h4>
-                                <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
+                                <h4 class="fw-bold">DETAIL ALAMAT DAN ORANG TUA</h4>
+        
                             </div>
                             <div class="text-center border-bottom p-4">
-                                <p class="text-primary mb-1">Kuliah /Semester sampai selesai total biaya Rp.48.250.000 - <strong>Diskon UP TO 50% Hanya Bayar Rp.25.000.000</strong></p>
-                                <h1 class="mb-3">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>520.000<small
-                                        class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Bulan</small>
-                                </h1>
-                                <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 GELOMBANG 1 DAPAT DI CICIL 2X</strong></p>
-								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 GELOMBANG 2 DAPAT DI CICIL 2X</strong></p>
+                                <a class="btn btn-primary px-4 py-2" href="cetak_daftar.php?id=<?php echo"$t[id_sesi]";?>" target="_blank">CETAK PENDAFTARAN</a>
+                                <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=loginlangsung">LOGIN</a>
                             </div>
                             <div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL. 2 : 25 FEBUARI - 03 APRIL 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.520.000 /Bulan</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 11 APRIL - 25 MEI 2023</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp.625.000 /Bulan</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>alamat : <?php echo"$t[alamat]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Desa :<?php echo"$t[desa]";?> </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kota/Kab :<?php echo"$t[kota]";?> </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kecamatan :<?php echo"$t[kecamatan]";?> </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Provinsi :<?php echo"$t[provinsi]";?> </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Nama Ayah :<?php echo"$t[nama_ayah]";?> </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Nama Ibu :<?php echo"$t[nama_ibu]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Pekerjaan Ayah:<?php echo"$t[pekerjaan_ayah]";?></p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Pekerjaan Ibu:<?php echo"$t[pekerjaan_ibu]";?></p>
                             </div>
-							
-							<div class="text-center border-bottom p-4">
-                                <p class="text-primary mb-1"><strong>Biaya Kuliah Belum Termasuk: </strong></p>
-                            </div>
-							<div class="p-4">
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kunjungan Industri Rp.2.500.000 1 X</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>BIAYA WISUDA Rp.2.000.000 1 X</p>
-                  
+                            <div class="text-center p-4">
+                                <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=biodataupdate&id=<?php echo"$t[id_sesi]";?>">RUBAH DATA</a>
                             </div>
                         </div>
                     </div>
@@ -311,5 +462,322 @@ $t=mysqli_fetch_array($tebaru); ?>
             </div>
         </div>
         <!-- Pricing End -->
+<?php } ?>
 
+<?php if($_GET['aksi']=='biodataupdate'){ 
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
+$t=mysqli_fetch_array($tebaru); ?>
+<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Lengkapi Biodata <?php echo"$t[nama]"; ?></h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Biodata <?php echo"$t[nama]"; ?> </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- Carousel End -->
+
+
+ <!-- Courses Start -->
+ <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Biodata <?php echo"$t[nama]"; ?> dengan nomor daftar <?php echo"$t[no_daftar]"; ?> </h6>
+                <h1 class="mb-5">Biodata <?php echo"$t[nama]"; ?> </h1>
+            </div>
+            <form method='post' action='int.php?m=proseseditbiodata&id_daftar=<?php echo"$t[id_daftar]"; ?>&id=<?php echo"$t[id_sesi]"; ?>'  enctype="multipart/form-data">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 >A.Data Diri dan Pilihan Jurusan : </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  value="<?php echo"$t[nama]"; ?>" >
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control"  value="<?php echo"$t[email]"; ?>">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label >Program Kuliah</label>
+                                    <select class="form-selec" name="program">
+                                        <option value="<?php echo"$t[program]"; ?>"><?php echo"$t[program]"; ?></option>
+                                        <option value="normal">Normal</option>
+                                        <option value="rpl">RPL 2 TAHUN</option>
+                                    </select>
+                            </div>
+                            
+                            <?php 
+                  if ($t['program'] === 'normal') {
+                                 // Jika program yang dipilih adalah 'normal'
+                                 // Lakukan tindakan yang sesuai di sini
+                                 echo "<div class='col-6'>
+                                 <label >Jurusan Kuliah</label>
+                                     <select class='form-selec' name='id_jurusan' required>
+                                         <option value='$t[id_jurusan]'>$t[id_jurusan]</option>";
+                                       $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan ORDER BY id_jurusan DESC ");
+                                            while ($x=mysqli_fetch_array($tebaru)){ 
+                                            echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
+                                            }
+                                    echo" </select>
+                                </div>";
+                                echo "<div class='col-6'>
+                                <label >Jenis Kuliah</label>
+                                    <select class='form-selec' name='jenis' required>
+                                        <option value='$t[jenis]'>$t[jenis]</option>
+                                        <option value='reguler'>Reguler</option>
+                                        <option value='kariawan'>Kariawan</option>
+                                    </select>
+                            </div>";
+                                 // Anda dapat menambahkan logika tambahan sesuai kebutuhan
+                             } else {
+                                 // Tindakan untuk program lain
+                                 echo "<div class='col-6'>
+                                 <label >Jurusan Kuliah</label>
+                                     <select class='form-selec' name='id_jurusan' required>
+                                     <option value='$t[id_jurusan]'>$t[id_jurusan]</option>";
+                                       $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan WHERE id_jurusan='1' ");
+                                       while ($x=mysqli_fetch_array($tebaru)){ 
+                                        echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
+                                       }
+                                    echo" </select>
+                             </div>";
+                             echo "<div class='col-6'>
+                                 <label >Jenis Kuliah</label>
+                                     <select class='form-selec' name='jenis' required>
+                                     <option value='$t[jenis]'>$t[jenis]</option>
+                                         <option value='kariawan'>Kariawan</option>
+                                     </select>
+                             </div>";
+                             
+                             }
+                            ?>
+                            
+                           
+                             <div class='col-6'>
+                                 <label >Jenis Kelamin</label>
+                                     <select class='form-selec' name='jenis_kelamin' required>
+                                         <option value="<?php echo"$t[jenis_kelamin]"; ?>"><?php echo"$t[jenis_kelamin]"; ?></option>
+                                         <option value='laki-laki'>Laki-Laki</option>
+                                         <option value='perempuan'>Perempuan</option>
+                                     </select>
+                             </div>
+                             <div class='col-6'>
+                                 <label >Agama</label>
+                                     <select class='form-selec' name='agama' required>
+                                         <option value="<?php echo"$t[agama]"; ?>"><?php echo"$t[agama]"; ?></option>
+                                         <option value='Islam'>Islam</option>
+                                         <option value='Kristen'>Kristen</option>
+                                         <option value='Protestan'>Protestan</option>
+                                         <option value='Hindu'>Hindu</option>
+                                         <option value='Budha'>Budha</option>
+                                     </select>
+                             </div>
+                             <div class='col-6'>
+                                 <label >Warga Negara</label>
+                                     <select class='form-selec' name='warga_siswa' required>
+                                         <option value="<?php echo"$t[warga_siswa]"; ?>"><?php echo"$t[warga_siswa]"; ?></option>
+                                         <option value='WNI'>Warga Negara Indonesia</option>
+                                         <option value='WNA'>Warga Negara Asing</option>
+
+                                     </select>
+                             </div>
+                             <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control"  name='nik' value="<?php echo"$t[nik]"; ?>" >
+                                    <label for="email">NIK</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control"  name='nisn' value="<?php echo"$t[nisn]"; ?>" required>
+                                    <label for="email">NISN</label>
+                                </div>
+                            </div>  
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name='no_hp' value="<?php echo"$t[no_hp]"; ?>" required>
+                                    <label for="name">Nomor WA/HP</label>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name='tempat_lahir' value="<?php echo"$t[tempat_lahir]"; ?>" required>
+                                    <label for="email">Tempat Lahir</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control"  name='tgl_lahir' value="<?php echo"$t[tgl_lahir]"; ?>" required>
+                                    <label for="email">Tanggal Lahir</label>
+                                </div>
+                            </div> 
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='asal_sekolah' value="<?php echo"$t[asal_sekolah]"; ?>" required>
+                                    <label for="email">Asal Sekolah</label>
+                                </div>
+                            </div>                           
+                        </div>
+              
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <h6 >B.Detail alamat Pendaftar </h6>
+                        <div class="row g-3">
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='desa' value="<?php echo"$t[desa]"; ?>" required>
+                                    <label for="email">Desa</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='rt' value="<?php echo"$t[rt]"; ?>" required>
+                                    <label for="email">RT</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='rw' value="<?php echo"$t[rw]"; ?>" required>
+                                    <label for="email">RW</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kecamatan' value="<?php echo"$t[kecamatan]"; ?>" required>
+                                    <label for="email">Kecamatan</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kota' value="<?php echo"$t[kota]"; ?>" required>
+                                    <label for="email">Kabupaten/Kota</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='provinsi' value="<?php echo"$t[provinsi]"; ?>" required>
+                                    <label for="email">Provinsi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"  name='kode_pos'  value="<?php echo"$t[kode_pos]"; ?>" required>
+                                    <label for="email">Kode Pos</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" name='foto'>
+                                    <label for="subject">Pas Foto 3x4</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" name='alamat' style="height: 150px" required><?php echo"$t[alamat]"; ?></textarea>
+                                    <label for="message">Alamat Lengkap</label>
+                                </div>
+                            </div>
+                           
+                        </div>
+                   
+                </div>
+
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <h6 >C.Detail Orang Tua Pendaftar </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name='nama_ayah' value="<?php echo"$t[nama_ayah]"; ?>" required>
+                                    <label for="name">Nama Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name='nama_ibu' value="<?php echo"$t[nama_ibu]"; ?>" required>
+                                    <label for="email">Nama Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pendidikan_ayah" value="<?php echo"$t[pendidikan_ayah]"; ?>" required>
+                                    <label for="subject">Pendidikan Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pendidikan_ibu" value="<?php echo"$t[pendidikan_ibu]"; ?>" required>
+                                    <label for="subject">Pendidikan Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pekerjaan_ayah" value="<?php echo"$t[pekerjaan_ayah]"; ?>" required>
+                                    <label for="subject">Pekerjaan Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="pekerjaan_ibu" value="<?php echo"$t[pekerjaan_ibu]"; ?>"  required>
+                                    <label for="subject">Pekerjaan Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="penghasilan_ayah" value="<?php echo"$t[penghasilan_ayah]"; ?>" required>
+                                    <label for="subject">Penghasilan Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="penghasilan_ibu" value="<?php echo"$t[penghasilan_ibu]"; ?>" required>
+                                    <label for="subject">Penghasilan Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="no_hp_ayah" value="<?php echo"$t[no_hp_ayah]"; ?>"  required>
+                                    <label for="subject">HP/WA Ayah</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="no_hp_ibu" value="<?php echo"$t[no_hp_ibu]"; ?>" required>
+                                    <label for="subject">HP/WA Ibu</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="transportasi" value="<?php echo"$t[transportasi]"; ?>" required>
+                                    <label for="subject">Tranport Tasi Ke Kampus</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">SIMPAN</button>
+                            </div>
+                        </div>
+                 
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- Courses End -->
 <?php } ?>
