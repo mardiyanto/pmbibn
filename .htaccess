@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# Perubahan URL untuk proses.php?aksi=login
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^proses/([^/]*)/([^/]*)$ /proses.php?aksi=$1 [L]

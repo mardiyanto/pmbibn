@@ -12,13 +12,14 @@
                                 <h4 class="fw-bold">S1 SISTEM INFORMASI</h4>
                                 <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
                             </div>
-                            <div class="text-center border-bottom p-4">/
+                            <div class="text-center border-bottom p-4">
                                 <p class="text-primary mb-1">Kuliah /Semester Biaya Normal Rp.5.200.000.00  - <strong>Diskon 20% Kamu Hanya Bayar Rp. 4.160.000 /Semester</strong></p>
                                 <h1 class="mb-3">
                                     <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>4.160.000<small
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">
@@ -54,13 +55,14 @@
                                 <h4 class="fw-bold">S1 BISNIS DIGITAL</h4>
                                 <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
                             </div>
-                            <div class="text-center border-bottom p-4">/
+                            <div class="text-center border-bottom p-4">
                                 <p class="text-primary mb-1">Kuliah /Semester Biaya Normal Rp.5.200.000.00  - <strong>Diskon 20% Kamu Hanya Bayar Rp. 4.160.000 /Semester</strong></p>
                                 <h1 class="mb-3">
                                     <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>4.160.000<small
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">
@@ -96,13 +98,14 @@
                                 <h4 class="fw-bold">S1 MANAJEMEN </h4>
                                 <p class="mb-0">AYO KULIAH DI IBN DENGAN BIAYA MURAH DAPAT DI CICIL</p>
                             </div>
-                            <div class="text-center border-bottom p-4">/
+                            <div class="text-center border-bottom p-4">
                                 <p class="text-primary mb-1">Kuliah /Semester Biaya Normal Rp.5.200.000.00  - <strong>Diskon 20% Kamu Hanya Bayar Rp. 4.160.000 /Semester</strong></p>
                                 <h1 class="mb-3">
                                     <small class="align-top" style="font-size: 22px; line-height: 45px;">Rp.</small>4.160.000<small
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">
@@ -147,6 +150,7 @@
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.200.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">
@@ -189,6 +193,8 @@
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">
@@ -231,6 +237,7 @@
                                         class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Semester</small>
                                 </h1>
                                 <a class="btn btn-primary px-4 py-2" href="https://daftar.ibnus.ac.id" target="_blank">DAFTAR SEKARANG</a>
+                                <p class="text-primary mb-1">Biaya Pendaftaran <strong>Rp.300.000 </strong></p>
 								<p class="text-primary mb-1">Biaya Daftar Ulang <strong>Rp.2.500.000 DAPAT DI CICIL 2X</strong></p>
                             </div>
                             <div class="p-4">

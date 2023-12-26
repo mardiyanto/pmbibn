@@ -166,6 +166,37 @@ elseif ($_GET['m'] == 'proseseditbiodata') {
     }
 }
 elseif ($_GET['m'] == 'login') {
-    echo "<script>window.alert('login sukses'); window.location=('insex.php')</script>";
+    // Ambil nilai dari form login
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    // Buat query untuk memeriksa email dan password di tabel daftar
+    $stmt = $koneksi->prepare("SELECT * FROM daftar WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $email, $password);
+    // Lakukan eksekusi query
+    $stmt->execute();
+    // Ambil hasil dari query
+    $result = $stmt->get_result();
+    // Periksa apakah ada hasil
+    if ($result->num_rows > 0) {
+        // Jika berhasil, simpan data ke dalam session
+        session_start();
+        $data = $result->fetch_assoc();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['id_daftar'] = $data['id_daftar'];
+        $_SESSION['id_sesi'] = $data['id_sesi'];
+        $_SESSION['nama'] = $data['nama'];
+        $_SESSION['foto'] = $data['foto'];
+        $_SESSION['email'] = $email;
+        $_SESSION['status'] = "user";
+        echo "<script>window.alert('login sukses'); window.location=('mhslog/index.php?aksi=home')</script>";
+        exit();
+    } else {
+        echo "<script>window.alert('Email atau password salah'); window.location=('proses.php?aksi=login')</script>";
+
+    }
+
+    // Tutup statement dan koneksi database
+    $stmt->close();
+
 }
 ?>

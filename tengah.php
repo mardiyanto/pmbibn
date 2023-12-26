@@ -4,7 +4,7 @@
  use PHPMailer\PHPMailer\Exception;
 
 if($_GET['aksi']=='biodata'){ 
-$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar,jurusan WHERE daftar.id_jurusan=jurusan.id_jurusan AND  daftar.id_sesi=$_GET[id] ");
 $t=mysqli_fetch_array($tebaru); ?>
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
@@ -65,10 +65,10 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
                                      <select class='form-selec' name='id_jurusan' required>
-                                         <option value='0'>--Pilih Jurusan--</option>";
+                                         <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan ORDER BY id_jurusan DESC ");
-                                            while ($t=mysqli_fetch_array($tebaru)){ 
-                                            echo" <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
+                                            while ($x=mysqli_fetch_array($tebaru)){ 
+                                            echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
                                             }
                                     echo" </select>
                                 </div>";
@@ -86,10 +86,10 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
                                      <select class='form-selec' name='id_jurusan' required>
-                                         <option value='0'>--Pilih Jurusan--</option>";
+                                         <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan WHERE id_jurusan='1' ");
-                                       while ($t=mysqli_fetch_array($tebaru)){ 
-                                        echo" <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
+                                       while ($x=mysqli_fetch_array($tebaru)){ 
+                                        echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
                                        }
                                     echo" </select>
                              </div>";
@@ -440,7 +440,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                             </div>
                             <div class="text-center border-bottom p-4">
                                 <a class="btn btn-primary px-4 py-2" href="cetak_daftar.php?id=<?php echo"$t[id_sesi]";?>" target="_blank">CETAK PENDAFTARAN</a>
-                                <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=loginlangsung">LOGIN</a>
+                                <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=login&id=<?php echo"$t[id_sesi]";?>">LOGIN</a>
                             </div>
                             <div class="p-4">
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>alamat : <?php echo"$t[alamat]";?></p>
@@ -465,7 +465,7 @@ $t=mysqli_fetch_array($tebaru); ?>
 <?php } ?>
 
 <?php if($_GET['aksi']=='biodataupdate'){ 
-$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar,jurusan WHERE daftar.id_jurusan=jurusan.id_jurusan AND  daftar.id_sesi=$_GET[id] ");
 $t=mysqli_fetch_array($tebaru); ?>
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
@@ -527,7 +527,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
                                      <select class='form-selec' name='id_jurusan' required>
-                                         <option value='$t[id_jurusan]'>$t[id_jurusan]</option>";
+                                         <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan ORDER BY id_jurusan DESC ");
                                             while ($x=mysqli_fetch_array($tebaru)){ 
                                             echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
@@ -548,7 +548,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                                  echo "<div class='col-6'>
                                  <label >Jurusan Kuliah</label>
                                      <select class='form-selec' name='id_jurusan' required>
-                                     <option value='$t[id_jurusan]'>$t[id_jurusan]</option>";
+                                     <option value='$t[id_jurusan]'>$t[nama_jurusan]</option>";
                                        $tebaru=mysqli_query($koneksi," SELECT * FROM jurusan WHERE id_jurusan='1' ");
                                        while ($x=mysqli_fetch_array($tebaru)){ 
                                         echo" <option value='$x[id_jurusan]'>$x[nama_jurusan]</option>";
@@ -777,6 +777,64 @@ $t=mysqli_fetch_array($tebaru); ?>
                 </div>
             </div>
             </form>
+        </div>
+    </div>
+    <!-- Courses End -->
+<?php } ?>
+
+<?php if($_GET['aksi']=='login'){ 
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
+$t=mysqli_fetch_array($tebaru); ?> 
+
+<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Form Login</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Form Login Calon Mahasiswa </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- Carousel End -->
+
+
+ <!-- Courses Start -->
+ <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Login Calon Mahasiswa</h6>
+                <h1 class="mb-5">Silahkan Login, jika lupa password silahkan klik lupapassword </h1>
+            </div>
+            <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form login -->
+        <form action='int.php?m=login' method='post'>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="<?php echo"$t[email]"; ?>" aria-describedby="emailHelp" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" value="<?php echo"$t[show_pass]"; ?>" id="exampleInputPassword1" required>
+          </div>
+       
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="proses.php?akasi=lupapass" class="btn btn-danger">Lupa Password</a>
+        </form>
+      </div>
+    </div>
         </div>
     </div>
     <!-- Courses End -->
