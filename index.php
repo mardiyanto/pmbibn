@@ -146,6 +146,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                
                 <?php  $i = date("Ymd");
 $j = gmdate('H:i:s',time()+60*60*7);   
 $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
@@ -163,6 +164,7 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
  $kode_jadi = "$bikin_kode"; ?>
                     <form id="myForm"  method='post' action='int.php?m=daftar'>
                         <div class="row g-3">
+                        <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=daftar">Lihat Program Kuliah Kami</a> <br>
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
@@ -177,16 +179,18 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
                                     <label for="email">Email</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                 
+                                <div class="col-12">
                                 <div class="form-floating">
                                 <select class='form-control select2' style='width: 100%;' name='program' id='program' required>
                                     <option value='normal'>----Pilih Program Kuliah----</option>
                                     <option value='normal'>Normal</option>
                                     <option value='rpl'>RPL 2 TAHUN</option>
                                 </select>
-                                    <label for="subject">Prgoram Kuliah</label>
+                                    <label for="subject">Program Kuliah</label>
                                 </div>
-                            </div>
+                            </div>    
+                    
                             <div class="col-12">
                                 <div class="form-floating">
                                 <select class='form-control select2' style='width: 100%;' name='jurusan' id='jurusan' required>

@@ -33,6 +33,13 @@
     <!-- Template Stylesheet -->
     <link href="tema/css/style.css" rel="stylesheet">
     <link href="tema/selec.css" rel="stylesheet">
+    <style>
+    .kotak-border {
+        border: 1px solid green; /* Ubah tebal border dan warna sesuai kebutuhan */
+        padding: 10px; /* Untuk menambah ruang di sekitar konten */
+        border-radius: 5px; /* Untuk sudut elemen yang lebih lembut */
+    }
+ </style>
 
 </head>
 
@@ -70,5 +77,25 @@
 
     <!-- Template Javascript -->
     <script src="tema/js/main.js"></script>
-    
+    <script>
+    $(document).ready(function() {
+    $('#program').change(function() {
+        var selectedProgram = $(this).val();
+
+        // Kirim permintaan AJAX ke server
+        $.ajax({
+            url: 'get_jurusan.php', // Ganti dengan nama file yang menangani permintaan
+            method: 'POST',
+            data: { program: selectedProgram },
+            success: function(response) {
+                // Isi dropdown jurusan dengan hasil dari server
+                $('#jurusan').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+    </script>
 </body>

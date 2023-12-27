@@ -35,7 +35,7 @@ $t=mysqli_fetch_array($tebaru); ?>
             </div>
             <form method='post' action='int.php?m=inputbiodata&id_daftar=<?php echo"$t[id_daftar]"; ?>&id=<?php echo"$t[id_sesi]"; ?>'  enctype="multipart/form-data">
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp kotak-border" data-wow-delay="0.1s">
                 <h6 >A.Data Diri dan Pilihan Jurusan : </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -173,7 +173,7 @@ $t=mysqli_fetch_array($tebaru); ?>
               
                 </div>
 
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp kotak-border" data-wow-delay="0.3s">
                 <h6 >B.Detail alamat Pendaftar </h6>
                         <div class="row g-3">
                             
@@ -236,7 +236,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                    
                 </div>
 
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-12 wow fadeInUp kotak-border"  data-wow-delay="0.5s">
                 <h6 >C.Detail Orang Tua Pendaftar </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -496,7 +496,7 @@ $t=mysqli_fetch_array($tebaru); ?>
             </div>
             <form method='post' action='int.php?m=proseseditbiodata&id_daftar=<?php echo"$t[id_daftar]"; ?>&id=<?php echo"$t[id_sesi]"; ?>'  enctype="multipart/form-data">
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp kotak-border" data-wow-delay="0.1s">
                 <h6 >A.Data Diri dan Pilihan Jurusan : </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -636,7 +636,7 @@ $t=mysqli_fetch_array($tebaru); ?>
               
                 </div>
 
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp kotak-border" data-wow-delay="0.3s">
                 <h6 >B.Detail alamat Pendaftar </h6>
                         <div class="row g-3">
                             
@@ -699,7 +699,7 @@ $t=mysqli_fetch_array($tebaru); ?>
                    
                 </div>
 
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-12 wow fadeInUp kotak-border" data-wow-delay="0.5s">
                 <h6 >C.Detail Orang Tua Pendaftar </h6>
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -803,10 +803,6 @@ $t=mysqli_fetch_array($tebaru); ?>
         </div>
     </div>
     <!-- Header End -->
-    <!-- Carousel End -->
-
-
- <!-- Courses Start -->
  <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -838,4 +834,198 @@ $t=mysqli_fetch_array($tebaru); ?>
         </div>
     </div>
     <!-- Courses End -->
+<?php } ?>
+<?php if($_GET['aksi']=='daftar'){ 
+$tebaru=mysqli_query($koneksi," SELECT * FROM daftar WHERE id_sesi=$_GET[id] ");
+$t=mysqli_fetch_array($tebaru); ?> 
+<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Form Daftar</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Form Pendaftaran Calon Mahasiswa Baru IBN Lampung</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+ </div>
+    <!-- Header End -->
+ <!-- Pricing Start -->
+ <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Pendaftaran Mahasiswa</h6>
+                <h1 class="mb-5">Formulir Pendaftaran</h1>
+            </div>
+                <div class="row gy-5 gx-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-share-alt text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">FORMULIR PENDAFTARAN</h4>
+                            </div>
+                            <div class="modal-body">
+                            <?php  $i = date("Ymd");
+$j = gmdate('H:i:s',time()+60*60*7);   
+$sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
+ $num = mysqli_num_rows($sql);
+ if($num <> 0)
+ {
+ $data = mysql_fetch_array($sql);
+ $kode = $data['id_daftar'] + 1;
+ }else
+ {
+ $kode = 1;
+ }
+ //mulai bikin kode
+ $bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
+ $kode_jadi = "$bikin_kode"; ?>
+                                <form action='int.php?m=daftar' method='post'>
+                                <input type="hidden"  name="no_daftar" value="<?php echo"IBN/$i/$kode_jadi/$j"; ?>" placeholder="Email">
+                                <input type="hidden"  name="id_daftar" value="<?php echo"$i"; ?>" placeholder="Email">
+                                 <div class="mb-3">
+                                    <label for="name">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="mb-3">
+                                            <label for="subject">Program Kuliah (*default Normal*)</label>
+                                            <select class='form-control select2' style='width: 100%;' name='program' id='program' required>
+                                            <option value='normal'>----Pilih Program Kuliah----</option>
+                                            <option value='normal'>Normal</option>
+                                            <option value='rpl'>RPL 2 TAHUN</option>
+                                            </select>
+                                   </div>
+                                   <div class="mb-3">
+                                            <label for="subject">Jurusan (*default sistem informasi*)</label>
+                                            <select class='form-control select2' style='width: 100%;' name='jurusan' id='jurusan' required>
+                                                <option value='1'>----Pilih Jurusan----</option>
+                                            </select>
+                                   </div>
+                               
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Password"  id="exampleInputPassword1" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                              </div>
+                              <div class="p-4">
+                                <p class="border-bottom pb-3 text-center">Note : anda dapat merubah jurusan dan program kuliah jika sudah melengkapi data , lalu login, anda dapat merubah data anda</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+					 <div class="position-relative shadow rounded border-top border-5 border-secondary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-share-alt text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">PROGRAM RPL 2 Tahun</h4>
+                                <p class="mb-0">Program Kuliah Hanya 2 Tahun</p>
+                            </div>
+                            <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Program ini hanya untuk anda yang mempunyai pengelaman kerja lebih dari 2 tahun,<strong>Cocok untuk anda yang sibuk dengan kerja, untuk jenjang kenaikan pangkat di tempat kerja anda tanpa ribet kuliah</strong></p>
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Hanya</small>2 Tahun<small
+                                        class="align-bottom" style="font-size: 16px; line-height: 40px;"> Selesai</small>
+                                </h1>
+                                <button type="button" class="btn btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#myModalrpl">SYARAT DAN KETENTUAN</button>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Jurusan hanya Sistem Informasi gelar (S.Kom)</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>kulian online dan Ofline</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kami menyesuikan waktu anda</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Anda dapat memilih metode belajar dalam kuliah</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+					    <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-cog text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">PROGRAM KULIAH NORMAL</h4>
+                                <p class="mb-0">Program Kuliah 4 Tahun (S1) & 3 Tahun (D3)</p>
+                            </div>
+                            <div class="text-center border-bottom p-4">
+                                <p class="text-primary mb-1">Program ini khusus anda yang sudah lulus SMA Sederajat,<strong>Program kuliah ini merupakan program normal kuliah selama 8 semester (S1) dan 6 Semester (D3) </strong></p>
+                                <h1 class="mb-3">
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">Kelas</small> Reguler<small
+                                        class="align-bottom" style="font-size: 16px; line-height: 40px;"> dan Kariawan</small>
+                                </h1>
+                                <button type="button" class="btn btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#myModal">SYARAT DAN KETENTUAN</button>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>kulian online dan Ofline (Kelas Kariawan)</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Kuliah Offline (Kelas Reguler)</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Anda dapat memilih metode belajar dalam kuliah (Kelas Kariawan)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pricing End -->  
+  <!--model Normal-->
+  <div class="modal fade show" id="myModalrpl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">SYARAT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                           <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Mendaftar dan Melengkapi Data</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Login di sistem Kami</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Upload Berkas :</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>1.IJAZAH TERAKHIR</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>2.Kartu Keluarga</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>3.PAS FOTO 4X6</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>4.Surat Keterangan Kerja (SK) Minimal 3 Tahun/Lebih dari instansi tempat kerja sebelumya atau sekarang </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Cetak Berkas Pendaftaran dan Membayar Biaya Pendaftaran</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Pedaftaran S1 (Rp.300.000) & D3 (Rp.200.000) </p>
+                            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--model RPL -->
+  <div class="modal fade show" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">SYARAT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                           <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Mendaftar dan Melengkapi Data</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Login di sistem Kami</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Upload Berkas IJAZAH/SKHU, KK DAN FOTO 4X6</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Cetak Berkas Pendaftaran dan Membayar Biaya Pendaftaran</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Pedaftaran S1 (Rp.300.000) & D3 (Rp.200.000) </p>
+                            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php } ?>

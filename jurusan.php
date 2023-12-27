@@ -74,7 +74,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <a href="https://rpl.ibnus.ac.id/"  class="btn btn-primary">Lihat Penawaran Menarik</a>
+          <a href="proses.php?aksi=daftar"  class="btn btn-primary">DAFTAR</a>
         </div>
       </div>
     </div>

@@ -9,6 +9,15 @@ elseif ($_GET['m'] == 'daftar') {
     $bytes = openssl_random_pseudo_bytes($length);
     $tt = hexdec(bin2hex($bytes)); // Mengubah heksadesimal ke desimal
     $sesi= $tt + $_POST['id_daftar'];
+    $check_query = "SELECT COUNT(*) as count FROM daftar WHERE email = '$_POST[email]'";
+    $check_result = mysqli_query($koneksi, $check_query);
+    $count = mysqli_fetch_assoc($check_result)['count'];
+    if ($count > 0) {
+        // Email sudah ada dalam database, tampilkan pesan kesalahan atau lakukan aksi yang sesuai
+        echo "<script>window.alert('email anda sudah terdatar di sistem kami silahkan login atau reset passord anda ');
+        window.location=('index.php#daftar')</script>";
+    }
+    else {
     require 'PHPMailer/src/Exception.php';
     require 'PHPMailer/src/PHPMailer.php';
     require 'PHPMailer/src/SMTP.php';
@@ -37,20 +46,23 @@ elseif ($_GET['m'] == 'daftar') {
         $mail->send();
         // Setelah email terkirim, lanjutkan dengan kueri MySQL
         $password = md5($_POST['password']);
-       
         // Gunakan prepared statement atau sanitasi input untuk mencegah SQL Injection
         $no_daftar = mysqli_real_escape_string($koneksi, $_POST['no_daftar']);
         $program = mysqli_real_escape_string($koneksi, $_POST['program']);
         $jurusan = mysqli_real_escape_string($koneksi, $_POST['jurusan']);
         $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
         $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+        // Query untuk memeriksa apakah email sudah ada di database
+    
         $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password,show_pass) VALUES ('$no_daftar', '$program', '$jurusan', '$nama', '$email', '$sesi', '$password','$_POST[password]' )";
         mysqli_query($koneksi, $query);
         echo "<script>window.alert('Silahkan Lengkapi data dan cek email..... ');
         window.location=('proses.php?aksi=biodata&id=$sesi')</script>";
+    
     } catch (Exception $e) {
         echo "Email tidak dapat dikirim. Pesan error: {$mail->ErrorInfo}";
     }
+ }
 }
 elseif ($_GET['m'] == 'inputbiodata') {
     // Pastikan form memiliki enctype="multipart/form-data"
