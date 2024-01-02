@@ -52,6 +52,7 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
+   
          <!-- Modal -->
 <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -73,7 +74,7 @@
           </div>
        
           <button type="submit" class="btn btn-primary">Submit</button>
-          <a href="proses.php?akasi=lupapass" class="btn btn-danger">Lupa Password</a>
+          <a href="proses.php?aksi=lupapass" class="btn btn-danger">Lupa Password</a>
         </form>
       </div>
     </div>
@@ -146,22 +147,25 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                
-                <?php  $i = date("Ymd");
-$j = gmdate('H:i:s',time()+60*60*7);   
-$sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
- $num = mysqli_num_rows($sql);
- if($num <> 0)
- {
- $data = mysql_fetch_array($sql);
- $kode = $data['id_daftar'] + 1;
- }else
- {
- $kode = 1;
- }
- //mulai bikin kode
- $bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
- $kode_jadi = "$bikin_kode"; ?>
+                <?php
+$i = date("Ymd");
+$j = gmdate('H:i:s', time() + 60 * 60 * 7);
+
+$sql = mysqli_query($koneksi, 'SELECT RIGHT(id_daftar, 3) AS id_daftar FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : ' . mysqli_error($koneksi));
+
+$num = mysqli_num_rows($sql);
+
+if ($num <> 0) {
+    $data = mysqli_fetch_array($sql);
+    $kode = $data['id_daftar'] + 1;
+} else {
+    $kode = 1;
+}
+
+// Mulai bikin kode
+$bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
+$kode_jadi = "$bikin_kode";
+?>
                     <form id="myForm"  method='post' action='int.php?m=daftar'>
                         <div class="row g-3">
                         <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=daftar">Lihat Program Kuliah Kami</a> <br>

@@ -1,4 +1,5 @@
 <?php 
+ include 'koneksi.php';
   date_default_timezone_set('Asia/Jakarta');
   ?>
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
     <!-- Header End -->
     <!-- Carousel End -->
 
-
+    <?php include "countime.php" ?>
     <!-- Service Start -->
     <?php include "pay.php" ?>
 

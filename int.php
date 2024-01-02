@@ -46,6 +46,8 @@ elseif ($_GET['m'] == 'daftar') {
         $mail->send();
         // Setelah email terkirim, lanjutkan dengan kueri MySQL
         $password = md5($_POST['password']);
+        $tgl_daftar =date("Y-m-d");
+        $waktu = gmdate('H:i:s',time()+60*60*7);
         // Gunakan prepared statement atau sanitasi input untuk mencegah SQL Injection
         $no_daftar = mysqli_real_escape_string($koneksi, $_POST['no_daftar']);
         $program = mysqli_real_escape_string($koneksi, $_POST['program']);
@@ -54,7 +56,8 @@ elseif ($_GET['m'] == 'daftar') {
         $email = mysqli_real_escape_string($koneksi, $_POST['email']);
         // Query untuk memeriksa apakah email sudah ada di database
     
-        $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password,show_pass) VALUES ('$no_daftar', '$program', '$jurusan', '$nama', '$email', '$sesi', '$password','$_POST[password]' )";
+        $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password,show_pass,	tgl_daftar, waktu) 
+        VALUES ('$no_daftar', '$program', '$jurusan', '$nama', '$email', '$sesi', '$password','$_POST[password]','$tgl_daftar','$waktu' )";
         mysqli_query($koneksi, $query);
         echo "<script>window.alert('Silahkan Lengkapi data dan cek email..... ');
         window.location=('proses.php?aksi=biodata&id=$sesi')</script>";
@@ -211,4 +214,5 @@ elseif ($_GET['m'] == 'login') {
     $stmt->close();
 
 }
+
 ?>

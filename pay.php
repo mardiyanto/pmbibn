@@ -24,7 +24,7 @@
                             </div>
                             <div class="p-4">
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.1 : 1 JANUARI - 25 MARET 2024</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.1600.000 /Semester</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.160.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.2 : 25 MARET - 27 MEI 2024</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.680.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 27 MEI - AGUSTUS 2024</p>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="p-4">
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.1 : 1 JANUARI - 25 MARET 2024</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.1600.000 /Semester</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.160.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.2 : 25 MARET - 27 MEI 2024</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.680.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 27 MEI - AGUSTUS 2024</p>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="p-4">
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.1 : 1 JANUARI - 25 MARET 2024</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.1600.000 /Semester</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.160.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.2 : 25 MARET - 27 MEI 2024</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>SPP Rp. 4.680.000 /Semester</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>GEL.3 : 27 MEI - AGUSTUS 2024</p>

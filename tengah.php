@@ -827,7 +827,7 @@ $t=mysqli_fetch_array($tebaru); ?>
           </div>
        
           <button type="submit" class="btn btn-primary">Submit</button>
-          <a href="proses.php?akasi=lupapass" class="btn btn-danger">Lupa Password</a>
+          <a href="proses.php?aksi=lupapass" class="btn btn-danger">Lupa Password</a>
         </form>
       </div>
     </div>
@@ -872,21 +872,25 @@ $t=mysqli_fetch_array($tebaru); ?>
                                 <h4 class="fw-bold">FORMULIR PENDAFTARAN</h4>
                             </div>
                             <div class="modal-body">
-                            <?php  $i = date("Ymd");
-$j = gmdate('H:i:s',time()+60*60*7);   
-$sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : '.mysql_error());
- $num = mysqli_num_rows($sql);
- if($num <> 0)
- {
- $data = mysql_fetch_array($sql);
- $kode = $data['id_daftar'] + 1;
- }else
- {
- $kode = 1;
- }
- //mulai bikin kode
- $bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
- $kode_jadi = "$bikin_kode"; ?>
+                            <?php
+$i = date("Ymd");
+$j = gmdate('H:i:s', time() + 60 * 60 * 7);
+
+$sql = mysqli_query($koneksi, 'SELECT RIGHT(id_daftar, 3) AS id_daftar FROM daftar ORDER BY id_daftar DESC LIMIT 1') or die('Error : ' . mysqli_error($koneksi));
+
+$num = mysqli_num_rows($sql);
+
+if ($num <> 0) {
+    $data = mysqli_fetch_array($sql);
+    $kode = $data['id_daftar'] + 1;
+} else {
+    $kode = 1;
+}
+
+// Mulai bikin kode
+$bikin_kode = str_pad($kode, 3, "0", STR_PAD_LEFT);
+$kode_jadi = "$bikin_kode";
+?>
                                 <form action='int.php?m=daftar' method='post'>
                                 <input type="hidden"  name="no_daftar" value="<?php echo"IBN/$i/$kode_jadi/$j"; ?>" placeholder="Email">
                                 <input type="hidden"  name="id_daftar" value="<?php echo"$i"; ?>" placeholder="Email">
@@ -990,13 +994,21 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
                            <div class="p-4">
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Mendaftar dan Melengkapi Data</p>
                                 <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Login di sistem Kami</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Upload Berkas :</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>1.IJAZAH TERAKHIR</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>2.Kartu Keluarga</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>3.PAS FOTO 4X6</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>4.Surat Keterangan Kerja (SK) Minimal 3 Tahun/Lebih dari instansi tempat kerja sebelumya atau sekarang </p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Cetak Berkas Pendaftaran dan Membayar Biaya Pendaftaran</p>
-                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Biaya Pedaftaran S1 (Rp.300.000) & D3 (Rp.200.000) </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>kumpulkan Berkas/upload berkas dalam bentuk zip :</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>1.Foto Kopi Ijazah Terakhir Legalisir</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>2.Foto Kopi Transkip Nilai Terakhir</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>3.Portopolio</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>4.sertifikat kopentensi</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>5.Surat Keterangan Kerja</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>6.Surat Referensi/Rekomendasi dari Pimpinan</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>7.Contoh Pekerjaan Yang pernah di hasilkan </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>8.Job Deskripsi dari asal tempat kerja </p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>9.Pengalaman kerja (on the job traning, Magang, kerja praktek,dll)</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>10.dokumen bukti lainya yang releven dengan bidang kerja</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>11.assesment dan interview oleh asesor</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Membayar Biaya Pendaftaran sebsesar Rp. 350.000 di bayar di awal</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Membayar Biaya assesment dokumen RPL Rp. 650.000 di bayar Pada saat mengupukan berkas atau via tranfer bank</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Membayar Biaya Konversi SKS Rp. 40.000 Dibayar Setelah keluar SK Konversi</p>
                             </div>
         </div>
         <div class="modal-footer">
@@ -1028,4 +1040,48 @@ $sql = @mysqli_query($koneksi, 'SELECT RIGHT(id_daftar ,3) AS id_daftar  FROM da
       </div>
     </div>
   </div>
+<?php } ?>
+<?php if($_GET['aksi']=='lupapass'){  ?>
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Reset Login Masuk Sistem</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Form Reset Password</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+ <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Reset Password</h6>
+                <h1 class="mb-5">Silahkan masukan email, untuk Reset Password </h1>
+            </div>
+            <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form login -->
+        <form action='proses_reset_password.php' method="post">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" id="email" name="email" value="<?php echo"$t[email]"; ?>" aria-describedby="emailHelp" required>
+          </div>
+          <button type="submit" class="btn btn-danger">Reset</button>
+        </form>
+      </div>
+    </div>
+        </div>
+    </div>
+    <!-- Courses End -->
 <?php } ?>
