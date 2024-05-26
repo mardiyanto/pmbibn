@@ -371,7 +371,7 @@ $kode_jadi = "$bikin_kode";
     </div>
     <!-- Team End -->
 
-
+    <?php include "app.php" ?>
     <!-- Testimonial Start -->
     <?php include "testi.php" ?>
     <!-- Testimonial End -->

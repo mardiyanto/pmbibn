@@ -381,13 +381,8 @@ echo"<div class='row'>
                         </div>
 
                         <div class='panel-body'>
-
-		
-
 <a href='javascript:history.go(-1)' class='btn btn-info'> Kembali</a></div>
-
 ";
-
 echo"$t[isi] </div></div></div></div></div>";
 
 }
@@ -589,7 +584,12 @@ echo"
                         <label>Link Dasbord</label>
 						<input type='text' class='form-control' name='link_b'/><br>
 						<label>Status Menu</label>
-						<input type='text' class='form-control' name='status'/><br>
+                        <select class='form-control select2' style='width: 100%;' name=status>
+                        <option value='1' selected>Pilih</option> 
+                        <option value='admin'>admin</option>
+                        <option value='user'>user</option>
+                        <option value='home'>home</option>
+                        </select><br><br>
                         <label>Icon</label>
                         <input type='text' class='form-control' name='icon_menu'/><br>
                         <label>Status Aktif</label>
@@ -597,7 +597,7 @@ echo"
                         <option value='1' selected>Pilih</option> 
                         <option value='Y'>Y</option>
                         <option value='N'>N</option>
-                    </select><br>
+                        </select><br>
                                             <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
                                             <button type='submit' class='btn btn-primary'>Save </button>
                                         </div>
