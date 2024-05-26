@@ -174,19 +174,13 @@
                         </form>";
                      }
                    else if($t['status_upload']=='1'){
-                    echo"<table class='table'>
-                    <tr>
-                      <td>FILE KK </td>
-                      <td><a href='../uploads/kk/$t[kk]' class='btn btn-success'><b>Lihat</b></a></td>
-                    </tr>
-                    <tr>
-                      <td>FILE IJAZAH </td>
-                      <td><a href='../uploads/ijazah/$t[ijazah]' target='_blank' class='btn btn-success'><b>Lihat</b></a></td>
-                    </tr>
-                    <tr>
-                      <td colspan='2'><a href='edit.php?aksi=ubahupload&id_sesi=$t[id_sesi]' target='_blank' class='btn btn-warning btn-block'><b>UBAH FILE</b></a></td>
-                    </tr>
-                  </table>";
+                    echo" <div class='tablediv-row header'>
+                                        <div class='tablediv-cell'>FILE KK = <a href='../uploads/kk/$t[kk]' class='btn btn-success'><b>Lihat</b></a></div>
+                                        <div class='tablediv-cell'>FILE IJAZAH = <a href='../uploads/ijazah/$t[ijazah]' class='btn btn-success'><b>Lihat</b></a></div>
+                                        <div class='tablediv-cell'><a href='edit.php?aksi=ubahupload&id_sesi=$t[id_sesi]' target='_blank' class='btn btn-warning btn-block'><b>UBAH FILE</b></a></div>
+                          </div>
+                        
+                    ";
                    } else { 
                     echo"<a href='#' class='btn btn-warning btn-block'><b>kesalahan sisstem kami</b></a>";
                       } ?>

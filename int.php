@@ -22,6 +22,7 @@ elseif ($_GET['m'] == 'daftar') {
     require 'PHPMailer/src/PHPMailer.php';
     require 'PHPMailer/src/SMTP.php';
     $mail = new PHPMailer(true);
+    
     try {
         // Konfigurasi SMTP
         $mail->isSMTP();
@@ -52,16 +53,20 @@ elseif ($_GET['m'] == 'daftar') {
         $no_daftar = mysqli_real_escape_string($koneksi, $_POST['no_daftar']);
         $program = mysqli_real_escape_string($koneksi, $_POST['program']);
         $jurusan = mysqli_real_escape_string($koneksi, $_POST['jurusan']);
-        $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
         $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-        // Query untuk memeriksa apakah email sudah ada di database
-    
+        // Validasi nama: hanya huruf dan spasi yang diizinkan
+        if (!preg_match("/^[a-zA-Z ]*$/", $_POST['nama'])) {
+            echo "<script>window.alert('Nama hanya boleh mengandung huruf dan spasi.'); window.location='index.php';</script>";
+        } else {
+          $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
+          // Query untuk memeriksa apakah email sudah ada di database
         $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password,show_pass,	tgl_daftar, waktu) 
         VALUES ('$no_daftar', '$program', '$jurusan', '$nama', '$email', '$sesi', '$password','$_POST[password]','$tgl_daftar','$waktu' )";
         mysqli_query($koneksi, $query);
         echo "<script>window.alert('Silahkan Lengkapi data dan cek email..... ');
         window.location=('proses.php?aksi=biodata&id=$sesi')</script>";
-    
+            // Lanjutkan proses penyimpanan ke database
+        }
     } catch (Exception $e) {
         echo "Email tidak dapat dikirim. Pesan error: {$mail->ErrorInfo}";
     }
