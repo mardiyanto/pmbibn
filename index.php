@@ -171,7 +171,7 @@ $kode_jadi = "$bikin_kode";
                         <a class="btn btn-primary px-4 py-2" href="proses.php?aksi=daftar">Lihat Program Kuliah Kami</a> <br>
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" pattern="[A-Za-z\s]+" title="Hanya huruf yang diperbolehkan" required>
                                     <label for="name">Nama Lengkap</label>
                                 </div>
                             </div>
@@ -179,11 +179,16 @@ $kode_jadi = "$bikin_kode";
                             <input type="hidden"  name="id_daftar" value="<?php echo"$i"; ?>" placeholder="Email">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Masukkan alamat email yang valid" required>
                                     <label for="email">Email</label>
                                 </div>
                             </div>
-                 
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="hp" name="no_hp" placeholder="Masukan Nomor hp/wa" pattern="[0-9]+" title="Masukkan nomor WA/HP yang valid" required>
+                                    <label for="email">Nomor WA/HP AKTIF</label>
+                                </div>
+                            </div>   
                                 <div class="col-12">
                                 <div class="form-floating">
                                 <select class='form-control select2' style='width: 100%;' name='program' id='program' required>
@@ -414,3 +419,4 @@ $kode_jadi = "$bikin_kode";
     </script>
 
 </body>
+</html>

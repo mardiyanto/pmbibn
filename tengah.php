@@ -896,12 +896,18 @@ $kode_jadi = "$bikin_kode";
                                 <input type="hidden"  name="id_daftar" value="<?php echo"$i"; ?>" placeholder="Email">
                                  <div class="mb-3">
                                     <label for="name">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" required>
+                                    <input type="text" class="form-control" id="name" name="nama" placeholder="Nama Lengkap" pattern="[A-Za-z\s]+" title="Hanya huruf yang diperbolehkan" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email" aria-describedby="emailHelp" required>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email" aria-describedby="emailHelp" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Masukkan alamat email yang valid" required>
                                     </div>
+                                    <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="hp" name="no_hp" placeholder="Masukan Nomor hp/wa" pattern="[0-9]+" title="Masukkan nomor WA/HP yang valid" required>
+                                    <label for="email">Nomor WA/HP AKTIF</label>
+                                </div>
+                            </div> 
                                     <div class="mb-3">
                                             <label for="subject">Program Kuliah (*default Normal*)</label>
                                             <select class='form-control select2' style='width: 100%;' name='program' id='program' required>
@@ -910,6 +916,7 @@ $kode_jadi = "$bikin_kode";
                                             <option value='rpl'>RPL 2 TAHUN</option>
                                             </select>
                                    </div>
+                                   
                                    <div class="mb-3">
                                             <label for="subject">Jurusan (*default sistem informasi*)</label>
                                             <select class='form-control select2' style='width: 100%;' name='jurusan' id='jurusan' required>

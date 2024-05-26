@@ -54,14 +54,15 @@ elseif ($_GET['m'] == 'daftar') {
         $program = mysqli_real_escape_string($koneksi, $_POST['program']);
         $jurusan = mysqli_real_escape_string($koneksi, $_POST['jurusan']);
         $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+        $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
         // Validasi nama: hanya huruf dan spasi yang diizinkan
         if (!preg_match("/^[a-zA-Z ]*$/", $_POST['nama'])) {
             echo "<script>window.alert('Nama hanya boleh mengandung huruf dan spasi.'); window.location='index.php';</script>";
         } else {
           $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
           // Query untuk memeriksa apakah email sudah ada di database
-        $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password,show_pass,	tgl_daftar, waktu) 
-        VALUES ('$no_daftar', '$program', '$jurusan', '$nama', '$email', '$sesi', '$password','$_POST[password]','$tgl_daftar','$waktu' )";
+        $query = "INSERT INTO daftar (no_daftar, program, id_jurusan, nama, email, id_sesi, password, show_pass,	tgl_daftar, waktu, no_hp) 
+        VALUES ('$no_daftar', '$program', '$jurusan', '$nama',  '$email', '$sesi', '$password','$_POST[password]','$tgl_daftar','$waktu', '$no_hp')";
         mysqli_query($koneksi, $query);
         echo "<script>window.alert('Silahkan Lengkapi data dan cek email..... ');
         window.location=('proses.php?aksi=biodata&id=$sesi')</script>";
