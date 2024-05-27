@@ -364,27 +364,21 @@ echo"
 
 
 
-elseif($_GET['aksi']=='viewprofil'){
+elseif($_GET['aksi']=='viewprofil') {
+    $queryProfil = mysqli_query($koneksi, "SELECT * FROM profil WHERE id_profil=$_GET[id_p]");
+    $dataProfil = mysqli_fetch_array($queryProfil);
 
-$tebaru=mysqli_query($koneksi," SELECT * FROM profil WHERE id_profil=$_GET[id_p] ");
-
-$t=mysqli_fetch_array($tebaru);
-
-echo"<div class='row'>
-
-                <div class='col-lg-12'>
-
-                    <div class='panel panel-default'>
-
-                        <div class='panel-heading'>$t[nama]
-
-                        </div>
-
-                        <div class='panel-body'>
-<a href='javascript:history.go(-1)' class='btn btn-info'> Kembali</a></div>
-";
-echo"$t[isi] </div></div></div></div></div>";
-
+    echo "<div class='row'>
+            <div class='col-lg-12'>
+                <div class='panel panel-default'>
+                    <div class='panel-heading'>" . $dataProfil['nama'] . "</div>
+                    <div class='panel-body'>
+                        <a href='javascript:history.go(-1)' class='btn btn-info'>Kembali</a>
+                        " . $dataProfil['isi'] . "
+                    </div>
+                </div>
+            </div>
+          </div>";
 }
 
 
